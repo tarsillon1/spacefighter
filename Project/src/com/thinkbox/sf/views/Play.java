@@ -12,6 +12,7 @@ import com.thinkbox.sf.constants.Images;
 import com.thinkbox.sf.control.ActiveUnits;
 import com.thinkbox.sf.control.GenerateFog;
 import com.thinkbox.sf.control.TileMap;
+import com.thinkbox.sf.control.Timer;
 import com.thinkbox.sf.control.inputs.MouseInput;
 import com.thinkbox.sf.model.Asteroid;
 import com.thinkbox.sf.model.Dust_Explosion;
@@ -38,6 +39,7 @@ public class Play {
 	public ActiveUnits asteriods = new ActiveUnits();
 	public ActiveUnits moved = new ActiveUnits();
 	public ArrayList<Fog_Particle> particles = new ArrayList<Fog_Particle>();
+	public ArrayList<Timer> timers = new ArrayList<Timer>();
 	public GenerateFog effects = new GenerateFog();
 
 	public TileMap map = new TileMap(0, 0);
@@ -85,18 +87,26 @@ public class Play {
 		Rectangle rec3 = new Rectangle(Game.getInstance().frame.getWidth() - 100, 0, 100,
 				Game.getInstance().frame.getHeight());
 		Rectangle rec4 = new Rectangle(0, 0, 100, Game.getInstance().frame.getHeight());
-		if (MouseInput.MOUSE.intersects(rec)) {
-			map.drawWordsUp(g);
-		}
-		if (MouseInput.MOUSE.intersects(rec2)) {
-			map.drawWordsDown(g);
-		}
-		if (MouseInput.MOUSE.intersects(rec3)) {
-			map.drawWordsRight(g);
-		}
-		if (MouseInput.MOUSE.intersects(rec4)) {
-			map.drawWordsLeft(g);
-		}
+		if (MouseInput.MOUSE.intersects(rec) && !map.getLock()) 
+			map.drawWordsUp(g, true);
+		else if(MouseInput.MOUSE.intersects(rec) && map.getLock())
+			map.drawWordsUp(g, false);
+		
+		if (MouseInput.MOUSE.intersects(rec2) && !map.getLock()) 
+			map.drawWordsDown(g, true);
+		else if(MouseInput.MOUSE.intersects(rec2) && map.getLock())
+			map.drawWordsDown(g, false);
+		
+		if (MouseInput.MOUSE.intersects(rec3) && !map.getLock()) 
+			map.drawWordsRight(g, true);
+		else if(MouseInput.MOUSE.intersects(rec3) && map.getLock())
+			map.drawWordsRight(g, false);
+		
+		if (MouseInput.MOUSE.intersects(rec4) && !map.getLock()) 
+			map.drawWordsLeft(g, true);
+		else if(MouseInput.MOUSE.intersects(rec4) && map.getLock())
+			map.drawWordsLeft(g, false);
+		
 		Game.frame.setLocation(0, 0);
 		Game.frame.setExtendedState(Frame.MAXIMIZED_BOTH);
 		player.draw(g);

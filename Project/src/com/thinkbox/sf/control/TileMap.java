@@ -13,6 +13,7 @@ import java.util.ConcurrentModificationException;
 
 import com.thinkbox.sf.Game;
 import com.thinkbox.sf.constants.GameConstants;
+import com.thinkbox.sf.constants.Images;
 import com.thinkbox.sf.model.Asteroid;
 import com.thinkbox.sf.model.Enemy;
 import com.thinkbox.sf.model.Unit;
@@ -27,7 +28,16 @@ public class TileMap {
 	private int yDiff;
 	private int direction;
 	private BufferedImage[][] tiles = new BufferedImage[GameConstants.MAP_WIDTH][GameConstants.MAP_HEIGHT];
+	private boolean locked;
 
+	public boolean getLock(){
+		return locked;
+	}
+	
+	public void setLock(boolean b){
+		locked = b;
+	}
+	
 	public TileMap(int cx, int cy) {
 		currentTileX = cx;
 		currentTileY = cy;
@@ -105,6 +115,10 @@ public class TileMap {
 				resize(tiles[currentTileX - 1][currentTileY], Game.getInstance().frame.getWidth(), Game.getInstance().frame.getHeight(), g, drawX - Game.getInstance().frame.getWidth(), drawY);
 			}
 		}
+		resize(Images.mergeUp, tiles[currentTileX][currentTileY].getWidth(), 150, g, 0, drawY - 75 );
+		resize(Images.mergeUp, tiles[currentTileX][currentTileY].getWidth(), 150, g, 0, drawY + Game.getInstance().frame.getHeight() - 75 );
+		resize(Images.mergeRight, 150, tiles[currentTileX][currentTileY].getHeight(), g, drawX - 75, 0 );
+		resize(Images.mergeRight, 150, tiles[currentTileX][currentTileY].getHeight(), g, drawX + Game.getInstance().frame.getWidth()  - 75, 0 );
 	}catch(IndexOutOfBoundsException e){
 	}
 	}
@@ -113,6 +127,8 @@ public class TileMap {
 		if (x == 0 && y == 0) {
 			Game.getInstance().play.asteriods.addUnit(GameConstants.asteroid1.create(500 + xDiff, 600 + yDiff, true));
 			Game.getInstance().play.asteriods.addUnit(GameConstants.asteroid1.create(300 + xDiff, 100 + yDiff, true));
+			//locked = true;
+			//Game.getInstance().play.timers.add(new Timer(10000, "Tiles"));
 		}
 		
 		if (x == 0 && y == 1) {
@@ -309,17 +325,21 @@ public class TileMap {
 	}
 	
 	@SuppressWarnings("static-access")
-	public void drawWordsUp(Graphics g) {
+	public void drawWordsUp(Graphics g, boolean b) {
 
 		Font tempFont = new Font("Arial", Font.BOLD, 45);
 		g.setFont(tempFont);
 		g.setColor(Color.WHITE);
+		if(b == true)
 		g.drawString("Sector " + currentTileX + ", " + (currentTileY + 1),
 				(int) (Game.getInstance().frame.getWidth() / 2.4), 50);
+		else
+			g.drawString("Sector Locked!",
+					(int) (Game.getInstance().frame.getWidth() / 2.4), 50);
 	}
 
 	@SuppressWarnings("static-access")
-	public void drawWordsDown(Graphics g) {
+	public void drawWordsDown(Graphics g, boolean b) {
 		if (currentTileY - 1 >= 0) {
 			Graphics2D g2D = (Graphics2D) g;
 			Font tempFont = new Font("Arial", Font.BOLD, 45);
@@ -330,14 +350,18 @@ public class TileMap {
 			fontAT.rotate(Math.toRadians(180));
 			Font theDerivedFont = theFont.deriveFont(fontAT);
 			g2D.setFont(theDerivedFont);
-			g2D.drawString("Sector " + currentTileX + ", " + (currentTileY - 1),
-					(int) (Game.getInstance().frame.getWidth() / 2) + 100, Game.getInstance().frame.getHeight() - 50);
+			if(b == true)
+				g2D.drawString("Sector " + currentTileX + ", " + (currentTileY - 1),
+						(int) (Game.getInstance().frame.getWidth() / 2) + 100, Game.getInstance().frame.getHeight() - 50);
+			else
+				g2D.drawString("Sector Locked!",
+						(int) (Game.getInstance().frame.getWidth() / 2) + 100, Game.getInstance().frame.getHeight() - 50);
 			g2D.setFont(theFont);
 		}
 	}
 
 	@SuppressWarnings("static-access")
-	public void drawWordsRight(Graphics g) {
+	public void drawWordsRight(Graphics g, boolean b) {
 		if (currentTileX + 1 < GameConstants.MAP_WIDTH) {
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			double height = screenSize.getHeight();
@@ -350,13 +374,17 @@ public class TileMap {
 			fontAT.rotate(Math.toRadians(90));
 			Font theDerivedFont = theFont.deriveFont(fontAT);
 			g2D.setFont(theDerivedFont);
-			g2D.drawString("Sector " + (currentTileX + 1) + ", " + currentTileY,
-					Game.getInstance().frame.getWidth() - 75, (int) (height / 2) - 115);
+			if(b == true)
+				g2D.drawString("Sector " + (currentTileX + 1) + ", " + currentTileY,
+						Game.getInstance().frame.getWidth() - 75, (int) (height / 2) - 115);
+			else
+				g2D.drawString("Sector Locked!" ,
+						Game.getInstance().frame.getWidth() - 75, (int) (height / 2) - 115);
 			g2D.setFont(theFont);
 		}
 	}
 
-	public void drawWordsLeft(Graphics g) {
+	public void drawWordsLeft(Graphics g, boolean b) {
 		if ((currentTileX - 1 >= 0)) {
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			double height = screenSize.getHeight();
@@ -369,7 +397,10 @@ public class TileMap {
 			fontAT.rotate(Math.toRadians(270));
 			Font theDerivedFont = theFont.deriveFont(fontAT);
 			g2D.setFont(theDerivedFont);
-			g2D.drawString("Sector " + (currentTileX - 1) + ", " + currentTileY, 75, (int) (height / 2) + 115);
+			if(b == true)
+				g2D.drawString("Sector " + (currentTileX - 1) + ", " + currentTileY, 75, (int) (height / 2) + 115);
+			else
+				g2D.drawString("Sector Locked!", 75, (int) (height / 2) + 115);
 			g2D.setFont(theFont);
 		}
 	}

@@ -27,6 +27,8 @@ public class ResourceLoader {
 	
 	public static void loadImages() {
 		try {
+			Images.mergeUp = imageLoader.loadImage("mergeUp.png");
+			Images.mergeRight = imageLoader.loadImage("mergeRight.png");
 			Images.check = imageLoader.loadImage("check.png");
 			Images.optionsB = imageLoader.loadImage("optionsback.png");
 			Images.noCheck = imageLoader.loadImage("noCheck.png");

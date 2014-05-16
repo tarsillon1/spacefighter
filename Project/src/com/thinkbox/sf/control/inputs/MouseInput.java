@@ -47,6 +47,7 @@ public class MouseInput extends MouseAdapter {
 				
 				if (MOUSE.intersects(Game.getInstance().menu.options) && !Game.getInstance().options.getOpen()) {
 					Game.getInstance().options.setOpen(true);
+					AudioPlayer.getSound(Audio.buttonClick).play();
 				}
 				
 				if (rect.intersects(Game.getInstance().menu.quit) && !Game.getInstance().options.getOpen()) {
