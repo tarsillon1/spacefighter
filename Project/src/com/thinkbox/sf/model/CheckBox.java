@@ -28,6 +28,11 @@ public class CheckBox {
 		return y;
 	}
 	
+	public void setLoc(int i, int i2){
+		x = i;
+		y = i2;
+	}
+	
 	public boolean getCheck(){
 		return current;
 	}

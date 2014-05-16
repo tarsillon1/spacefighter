@@ -75,7 +75,7 @@ public class Play {
 		} catch (NoSuchElementException e) {
 		} catch(NullPointerException e){
 		}
-		if(Game.getInstance().options.getOpen())
+		if(Game.getInstance().options.check1.getCheck())
 			Game.getInstance().play.effects.generate();
 		///////////////////////////////////////////////////////////////////////////////////////
 		
@@ -139,6 +139,6 @@ public class Play {
 	}
 
 	public void playMusic() {
-		AudioPlayer.getSound(Audio.gameMusic).play();
+		AudioPlayer.getSound(Audio.gameMusic).loop();
 	}
 }

@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class Images {
 	public static BufferedImage fog;
+	public static BufferedImage optionsB;
 	public static BufferedImage logo;
 	public static BufferedImage loading;
 	public static BufferedImage tile1;

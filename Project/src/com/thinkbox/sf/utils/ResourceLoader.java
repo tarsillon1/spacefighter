@@ -28,6 +28,7 @@ public class ResourceLoader {
 	public static void loadImages() {
 		try {
 			Images.check = imageLoader.loadImage("check.png");
+			Images.optionsB = imageLoader.loadImage("optionsback.png");
 			Images.noCheck = imageLoader.loadImage("noCheck.png");
 			Images.fog = imageLoader.loadImage("smoke.png");
 			Images.tile3 = imageLoader.loadImage("backround2.png");

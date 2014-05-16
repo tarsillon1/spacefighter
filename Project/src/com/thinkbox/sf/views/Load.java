@@ -32,11 +32,11 @@ public class Load {
 		resize(Images.loading, GameConstants.WIDTH, GameConstants.HEIGHT, g, 0, 0);
 		g.drawImage(Images.logo, 0, 0, null);
 		g.setColor(Color.LIGHT_GRAY);
-		g.drawRect(49, 399, width, 51);
+		g.drawRect(49, 405, width, 21);
 		g.setFont(new Font("Arial", Font.PLAIN, 18));
 		g.drawString(msg, 51, 395);
 		g.setColor(Color.DARK_GRAY);
-		g.fillRect(50, 400, loadStatus - 1, 50);
+		g.fillRect(50, 406, loadStatus - 1, 20);
 	}
 	
 	public static void loadMore(){

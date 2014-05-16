@@ -55,6 +55,6 @@ public class Menu {
 	}
 	
 	public void playMusic() {
-		AudioPlayer.getSound(Audio.menuMusic).play();
+		AudioPlayer.getSound(Audio.menuMusic).loop();
 	}
 }

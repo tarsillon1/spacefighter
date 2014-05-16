@@ -26,7 +26,6 @@ import com.thinkbox.sf.control.timers.EnemyTimer;
 import com.thinkbox.sf.control.timers.ExplosionTimer;
 import com.thinkbox.sf.control.timers.HealthTimer;
 import com.thinkbox.sf.control.timers.MovementTimer;
-import com.thinkbox.sf.control.timers.MusicTimer;
 import com.thinkbox.sf.control.timers.SparkTimer;
 import com.thinkbox.sf.control.timers.TileMapTimer;
 import com.thinkbox.sf.utils.ResourceLoader;
@@ -133,7 +132,6 @@ public class Game extends Canvas implements Runnable {
 				new AsteroidTimer().start();
 				new DustTimer().start();
 				new TileMapTimer().start();
-				new MusicTimer(GameConstants.MUSIC_INTERVAL).start();
 				counter ++;
 				Load.loadMore();
 				return;

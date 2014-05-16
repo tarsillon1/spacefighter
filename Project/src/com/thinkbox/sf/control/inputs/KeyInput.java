@@ -23,6 +23,13 @@ public class KeyInput extends KeyAdapter {
 					AudioPlayer.getSound(Audio.moveSound).loop();
 				W = true;
 			}
+			if (key == KeyEvent.VK_O && Game.getInstance().play.player.isAlive()) {
+				if(Game.getInstance().options.getOpen()){
+					Game.getInstance().options.setOpen(false);
+				}
+				else
+					Game.getInstance().options.setOpen(true);
+			}
 			break;
 		case MENU:
 			break;
