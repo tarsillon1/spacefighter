@@ -47,6 +47,7 @@ public class Game extends Canvas implements Runnable {
 	public Menu menu;
 	public Play play;
 	public Options options;
+	public boolean frankwashere = false; 
 	
 	private int time;
 	private int counter = 0;
@@ -85,6 +86,7 @@ public class Game extends Canvas implements Runnable {
 		}
 		g.dispose();
 		bs.show();
+		frankwashere = true;
 	}
 
 	public void init() {
