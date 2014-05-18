@@ -41,7 +41,7 @@ public class GameConstants {
 	public static final int HEIGHT = WIDTH / 4 * 3;
 	public static final String TITLE = "Test Game";
 	public static final EnemyType redShip = new EnemyType(0, "standing", 100, 100, Images.ship2Stand, Images.ship2Walk,
-			Game.getInstance().play.enemyWeapon1, 45);
-	public static final AsteroidType asteroid1 = new AsteroidType(100, "", 100, 100, null, Images.asteroid1);
+			Game.getInstance().play.enemyWeapon1, 45, 20);
+	public static final AsteroidType asteroid1 = new AsteroidType(100, "", 100, 100, null, Images.asteroid1, 10);
 	public static final int MUSIC_INTERVAL = 188 * 1000;
 }

@@ -25,6 +25,19 @@ public class Fog_Particle {
 		Game.getInstance().play.particles.add(this);
 	}
 	
+	public void setLoc(int x1, int y1){
+		x = x1;
+		y= y1;
+	}
+	
+	public int getX(){
+		return x;
+	}
+	
+	public int getY(){
+		return y;
+	}
+	
 	public void act(){
 		if(remove == true){
 			Game.getInstance().play.particles.remove(this);

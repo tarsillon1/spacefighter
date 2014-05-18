@@ -19,8 +19,6 @@ public class KeyInput extends KeyAdapter {
 		switch (Game.state) {
 		case GAME:
 			if (key == KeyEvent.VK_W && Game.getInstance().play.player.isAlive()) {
-				if(W == false)
-					AudioPlayer.getSound(Audio.moveSound).loop();
 				W = true;
 			}
 			if (key == KeyEvent.VK_O && Game.getInstance().play.player.isAlive()) {
