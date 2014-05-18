@@ -10,14 +10,12 @@ import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ConcurrentModificationException;
-import java.util.NoSuchElementException;
 
 import com.thinkbox.sf.Game;
 import com.thinkbox.sf.constants.GameConstants;
 import com.thinkbox.sf.constants.Images;
 import com.thinkbox.sf.model.Asteroid;
 import com.thinkbox.sf.model.Enemy;
-import com.thinkbox.sf.model.Fog_Particle;
 import com.thinkbox.sf.model.Unit;
 
 public class TileMap {
@@ -129,7 +127,8 @@ public class TileMap {
 		if (x == 0 && y == 0) {
 			Game.getInstance().play.asteriods.addUnit(GameConstants.asteroid1.create(500 + xDiff, 600 + yDiff, true));
 			Game.getInstance().play.asteriods.addUnit(GameConstants.asteroid1.create(300 + xDiff, 100 + yDiff, true));
-			locked = true;
+			//locked = true;
+			//Game.getInstance().play.timers.add(new Timer(10000, "Tiles"));
 		}
 		
 		if (x == 0 && y == 1) {
@@ -144,8 +143,6 @@ public class TileMap {
 			Game.getInstance().play.asteriods.addUnit(GameConstants.asteroid1.create(300 + xDiff, 200 + yDiff, true));
 			Game.getInstance().play.asteriods.addUnit(GameConstants.asteroid1.create(400 + xDiff, 300 + yDiff, true));
 			Game.getInstance().play.asteriods.addUnit(GameConstants.asteroid1.create(421 + xDiff, 500 + yDiff, true));
-			locked = true;
-			Game.getInstance().play.timers.add(new Timer(10000, "Tiles"));
 		}
 	}
 	
@@ -157,6 +154,7 @@ public class TileMap {
 	}
 	
 	public void transitionRight(){
+		Game.getInstance().play.effects.setCreate(false);
 		xDiff = Game.getInstance().getWidth();
 		yDiff = 0;
 		direction = 3;
@@ -171,15 +169,6 @@ public class TileMap {
 					aUnit.setLoc(aUnit.getX() - 1, aUnit.getY());
 				}
 			} catch (ConcurrentModificationException e) {
-			}
-			
-			try {
-				for (Fog_Particle aParticle : Game.getInstance().play.particles) {
-					aParticle.setLoc(aParticle.getX() - 1, aParticle.getY());
-				}
-			} catch (ConcurrentModificationException e) {
-			} catch (NoSuchElementException e) {
-			} catch (NullPointerException e) {
 			}
 			
 			try {
@@ -202,6 +191,7 @@ public class TileMap {
 	}
 	
 	public void transitionLeft(){
+		Game.getInstance().play.effects.setCreate(false);
 		xDiff = -Game.getInstance().getWidth();
 		yDiff = 0;
 		direction = 4;
@@ -216,15 +206,6 @@ public class TileMap {
 					aUnit.setLoc(aUnit.getX() + 1, aUnit.getY());
 				}
 			} catch (ConcurrentModificationException e) {
-			}
-			
-			try {
-				for (Fog_Particle aParticle : Game.getInstance().play.particles) {
-					aParticle.setLoc(aParticle.getX() + 1, aParticle.getY());
-				}
-			} catch (ConcurrentModificationException e) {
-			} catch (NoSuchElementException e) {
-			} catch (NullPointerException e) {
 			}
 			
 			try {
@@ -247,6 +228,7 @@ public class TileMap {
 	}
 	
 	public void transitionUp(){
+		Game.getInstance().play.effects.setCreate(false);
 		xDiff = 0;
 		yDiff = -Game.getInstance().getHeight();
 		direction = 1;
@@ -261,15 +243,6 @@ public class TileMap {
 					aUnit.setLoc(aUnit.getX(), aUnit.getY() + 1);
 				}
 			} catch (ConcurrentModificationException e) {
-			}
-			
-			try {
-				for (Fog_Particle aParticle : Game.getInstance().play.particles) {
-					aParticle.setLoc(aParticle.getX(), aParticle.getY() + 1);
-				}
-			} catch (ConcurrentModificationException e) {
-			} catch (NoSuchElementException e) {
-			} catch (NullPointerException e) {
 			}
 			
 			try {
@@ -300,6 +273,7 @@ public class TileMap {
 	}
 	
 	public void transitionDown(){
+		Game.getInstance().play.effects.setCreate(false);
 		setDiff(0, Game.getInstance().getHeight());
 		setDerection(2);
 		spawnTile(getX(), getY() - 1);
@@ -313,15 +287,6 @@ public class TileMap {
 					aUnit.setLoc(aUnit.getX(), aUnit.getY() - 1);
 				}
 			} catch (ConcurrentModificationException e) {
-			}
-			
-			try {
-				for (Fog_Particle aParticle : Game.getInstance().play.particles) {
-					aParticle.setLoc(aParticle.getX(), aParticle.getY() - 1);
-				}
-			} catch (ConcurrentModificationException e) {
-			} catch (NoSuchElementException e) {
-			} catch (NullPointerException e) {
 			}
 			
 			try {
@@ -361,16 +326,16 @@ public class TileMap {
 	
 	@SuppressWarnings("static-access")
 	public void drawWordsUp(Graphics g, boolean b) {
-		if (currentTileY + 1 < GameConstants.MAP_HEIGHT) {
-			Font tempFont = new Font("Arial", Font.BOLD, 45);
-			g.setFont(tempFont);
-			g.setColor(Color.WHITE);
-			if (b == true)
-				g.drawString("Sector " + currentTileX + ", " + (currentTileY + 1),
-						(int) (Game.getInstance().frame.getWidth() / 2.4), 50);
-			else
-				g.drawString("Sector Locked!", (int) (Game.getInstance().frame.getWidth() / 2.4), 50);
-		}
+
+		Font tempFont = new Font("Arial", Font.BOLD, 45);
+		g.setFont(tempFont);
+		g.setColor(Color.WHITE);
+		if(b == true)
+		g.drawString("Sector " + currentTileX + ", " + (currentTileY + 1),
+				(int) (Game.getInstance().frame.getWidth() / 2.4), 50);
+		else
+			g.drawString("Sector Locked!",
+					(int) (Game.getInstance().frame.getWidth() / 2.4), 50);
 	}
 
 	@SuppressWarnings("static-access")

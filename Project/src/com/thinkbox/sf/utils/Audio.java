@@ -11,5 +11,4 @@ public class Audio
 	public static final String explode = "explode";
 	public static final String dustExplode = "dirt";
 	public static final String moveSound = "move";
-	public static final String hit = "hit";
 }

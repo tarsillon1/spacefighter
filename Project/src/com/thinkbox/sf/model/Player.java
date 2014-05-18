@@ -59,9 +59,7 @@ public class Player extends Unit {
 
 	public void act() {
 		// Movement
-		if (KeyInput.W && isAlive() && !(getX() == MouseInput.MOUSE_X && getY() == MouseInput.MOUSE_Y)) {
-			if(getAction() == "standing")
-				AudioPlayer.getSound(Audio.moveSound).loop();
+		if (KeyInput.W && isAlive()) {
 			setAction("moving");
 			if (getX() > MouseInput.MOUSE_X) {
 				setLoc(getX() - 1, getY());

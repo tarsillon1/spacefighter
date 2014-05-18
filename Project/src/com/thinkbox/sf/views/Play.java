@@ -1,7 +1,5 @@
 package com.thinkbox.sf.views;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -13,11 +11,8 @@ import com.thinkbox.sf.Game;
 import com.thinkbox.sf.constants.Images;
 import com.thinkbox.sf.control.ActiveUnits;
 import com.thinkbox.sf.control.GenerateFog;
-import com.thinkbox.sf.control.Money;
-import com.thinkbox.sf.control.ShipGenerator;
 import com.thinkbox.sf.control.TileMap;
 import com.thinkbox.sf.control.Timer;
-import com.thinkbox.sf.control.inputs.KeyInput;
 import com.thinkbox.sf.control.inputs.MouseInput;
 import com.thinkbox.sf.model.Asteroid;
 import com.thinkbox.sf.model.Dust_Explosion;
@@ -46,9 +41,8 @@ public class Play {
 	public ArrayList<Fog_Particle> particles = new ArrayList<Fog_Particle>();
 	public ArrayList<Timer> timers = new ArrayList<Timer>();
 	public GenerateFog effects = new GenerateFog();
-	public ShipGenerator fireEffects = new ShipGenerator();
+
 	public TileMap map = new TileMap(0, 0);
-	public Money money = new Money(0);
 
 	public Play() {
 		map.setTile(0, 0, Images.tile1);
@@ -65,7 +59,7 @@ public class Play {
 	@SuppressWarnings("static-access")
 	public void render(Graphics g) {
 		map.draw(g);
-		money.draw(g);
+		
 		//Effects/////////////////////////////////////////////////////////////////////////////
 		try {
 			for (Fog_Particle aParticle : particles) {
@@ -85,8 +79,6 @@ public class Play {
 		}
 		if(Game.getInstance().options.check1.getCheck())
 			Game.getInstance().play.effects.generate();
-		if(KeyInput.W == true && !(player.getX() == MouseInput.MOUSE_X && player.getY() == MouseInput.MOUSE_Y))
-			Game.getInstance().play.fireEffects.generate();
 		///////////////////////////////////////////////////////////////////////////////////////
 		
 		Rectangle rec = new Rectangle(0, 0, Game.getInstance().frame.getWidth(), 50);

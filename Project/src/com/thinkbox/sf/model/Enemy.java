@@ -23,23 +23,17 @@ public class Enemy extends Unit {
 	private int accuracy;
 	private boolean active;
 	private boolean isNew;
-	private int worth;
 	private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 
 	public Enemy(int locX, int locY, double a, String act, int h, int th, BufferedImage s, BufferedImage m, Weapon w,
-			int ac, boolean b, int money) {
+			int ac, boolean b) {
 		super(locX, locY, a, act, h, th, w);
 		standing = s;
 		moving = m;
 		accuracy = ac;
 		isNew = b;
-		worth = money;
 	}
 
-	public int getWorth(){
-		return worth;
-	}
-	
 	public void newDirection(boolean s) {
 		int random;
 		if (s == false) {
@@ -375,7 +369,6 @@ public class Enemy extends Unit {
 		direction = 0;
 		Explosion boom = new Explosion(getX(), getY(), 0, "", 0, 0, getWeapon());
 		Game.getInstance().play.explosions.addUnit(boom);
-		Game.getInstance().play.money.addMoney(worth);
 	}
 
 	public void hit(int x, int y) {

@@ -4,8 +4,6 @@ import java.awt.image.BufferedImage;
 
 public class Images {
 	public static BufferedImage fog;
-	public static BufferedImage money;
-	public static BufferedImage fire;
 	public static BufferedImage mergeUp;
 	public static BufferedImage mergeRight;
 	public static BufferedImage optionsB;

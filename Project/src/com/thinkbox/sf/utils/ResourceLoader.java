@@ -69,8 +69,6 @@ public class ResourceLoader {
 			Images.options = imageLoader.loadImage("options.png");
 			Images.exit = imageLoader.loadImage("exit.png");
 			Images.over = imageLoader.loadImage("gameover.png");
-			Images.fire = imageLoader.loadImage("fire.png");
-			Images.money = imageLoader.loadImage("money.png");
 		} catch (IOException e) {
 		}
 	}
@@ -86,6 +84,6 @@ public class ResourceLoader {
 		AudioPlayer.addSound(Audio.explode, GameConstants.SOUND_LOCATION + "explode.ogg");
 		AudioPlayer.addSound(Audio.dustExplode, GameConstants.SOUND_LOCATION + "dirtExplosion.ogg");
 		AudioPlayer.addSound(Audio.moveSound, GameConstants.SOUND_LOCATION + "moving.ogg");
-		AudioPlayer.addSound(Audio.hit, GameConstants.SOUND_LOCATION + "hit.ogg");
+
 	}
 }

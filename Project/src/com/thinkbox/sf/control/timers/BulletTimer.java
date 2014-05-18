@@ -10,8 +10,6 @@ import com.thinkbox.sf.model.Asteroid;
 import com.thinkbox.sf.model.Bullet;
 import com.thinkbox.sf.model.Enemy;
 import com.thinkbox.sf.model.Unit;
-import com.thinkbox.sf.utils.Audio;
-import com.thinkbox.sf.utils.AudioPlayer;
 
 public class BulletTimer extends Thread {
 	public BulletTimer() {
@@ -41,7 +39,6 @@ public class BulletTimer extends Thread {
 								aUnit2.setHealth(aUnit2.getHealth()
 										- Game.getInstance().play.player
 												.getWeapon().getDamage());
-								AudioPlayer.getSound(Audio.hit).play();
 								aUnit2.hit(aUnit2.getX(), aUnit2.getY());
 								aBullet.setActive(false);
 							}
@@ -134,7 +131,6 @@ public class BulletTimer extends Thread {
 												- Game.getInstance().play.player
 														.getWeapon()
 														.getDamage());
-										AudioPlayer.getSound(Audio.hit).play();
 									}
 
 									try {
@@ -173,7 +169,6 @@ public class BulletTimer extends Thread {
 
 					}
 				} catch (ConcurrentModificationException e) {
-				} catch (NoSuchElementException e) {
 				}
 
 				try {
@@ -205,7 +200,6 @@ public class BulletTimer extends Thread {
 										aUnit.setHealth(Game.getInstance().play.player
 												.getHealth()
 												- aUnit.getWeapon().getDamage());
-										AudioPlayer.getSound(Audio.hit).play();
 									}
 								}
 							}
