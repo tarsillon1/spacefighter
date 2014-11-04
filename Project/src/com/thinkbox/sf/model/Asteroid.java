@@ -13,13 +13,15 @@ public class Asteroid extends Unit {
 	private BufferedImage moving;
 	private Boolean active = true;
 	private Boolean isNew = false;
+	private int worth;
 	
 	public Asteroid(int locX, int locY, double a, String act, int h, int th,
-			Weapon w, int d, BufferedImage m, boolean b) {
+			Weapon w, int d, BufferedImage m, boolean b, int wor) {
 		super(locX, locY, a, act, h, th, w);
 		moving = m;
 		direction = 1 + (int) (Math.random() * ((4 - 1) + 1));
 		isNew = b;
+		worth = wor;
 	}
 	
 	public void setActive(boolean a){
@@ -154,6 +156,7 @@ public class Asteroid extends Unit {
 		actor = null;
 		Dust_Explosion boom = new Dust_Explosion(getX(), getY(), 0, "", 0, 0, getWeapon());
 		Game.getInstance().play.dustE.addUnit(boom);
+		Game.getInstance().play.money.addMoney(worth);
 	}
 	
 }

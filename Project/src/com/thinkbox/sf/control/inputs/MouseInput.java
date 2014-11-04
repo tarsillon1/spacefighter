@@ -24,6 +24,9 @@ public class MouseInput extends MouseAdapter {
 				if(Game.getInstance().options.check1.getRec().intersects(MOUSE)){
 					Game.getInstance().options.check1.setCheck();
 				}
+				if(Game.getInstance().options.check2.getRec().intersects(MOUSE)){
+					Game.getInstance().options.check2.setCheck();
+				}
 				if(Game.getInstance().options.exit.intersects(MOUSE)){
 					Game.getInstance().options.setOpen(false);
 					AudioPlayer.getSound(Audio.buttonClick).play();

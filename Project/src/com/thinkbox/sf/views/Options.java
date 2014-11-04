@@ -18,6 +18,7 @@ import com.thinkbox.sf.utils.AudioPlayer;
 
 public class Options {
 	public CheckBox check1 = new CheckBox(((int)(Game.frame.getWidth() / 2) + 7), 75);
+	public CheckBox check2 = new CheckBox(((int)(Game.frame.getWidth() / 2) + 7), 150);
 	public Rectangle exit = new Rectangle((int)(Game.frame.getWidth() / 2) - 101, (int)(Game.frame.getHeight() - 100), 200, 50);
 	private boolean open;
 	private boolean lastColor;
@@ -45,6 +46,7 @@ public class Options {
 		if(open){
 			if(Game.state == GameState.MENU){
 				check1.setLoc((int)(Game.frame.getWidth() / 2) + 7, 75);
+				check2.setLoc((int)(Game.frame.getWidth() / 2) + 7, 150);
 				g.setColor(Color.BLACK);
 				g.fillRect(0, 0, Game.frame.getWidth(), Game.frame.getHeight());
 				resize(Images.optionsB, Game.frame.getWidth(), Game.frame.getHeight(), g, 0, 0);
@@ -53,6 +55,7 @@ public class Options {
 				g.drawString("OPTIONS", (Game.frame.getWidth() / 2) - 115, 50);
 				g.setFont(new Font("Arial", Font.PLAIN, 30));
 				g.drawString("Fog:", check1.getX() - 90, check1.getY() + 37);
+				g.drawString("Fire:", check2.getX() - 90, check2.getY() + 37);
 				if (MouseInput.MOUSE.intersects(exit) && MouseInput.MOUSE != null) {
 					if(lastColor == false){
 						AudioPlayer.getSound(Audio.buttonHover).play();
@@ -66,9 +69,11 @@ public class Options {
 				g.drawString("Back", (int) exit.getX() + 65, (int) exit.getY() + 35);
 				g.drawRect((int)exit.getX(), (int)exit.getY(), (int)exit.getWidth(), (int)exit.getHeight());
 				check1.render(g);
+				check2.render(g);
 			}
 				else if(Game.state == GameState.GAME){
 					check1.setLoc((int)(Game.frame.getWidth() / 2) + 6, 75);
+					check2.setLoc((int)(Game.frame.getWidth() / 2) + 6, 150);
 					exit.setLocation((int)(Game.frame.getWidth() / 2) - 94, (int)(Game.frame.getHeight() - 100));
 					g.setColor(Color.BLACK);
 					g.fillRect(0, 0, Game.frame.getWidth(), Game.frame.getHeight());
@@ -78,6 +83,7 @@ public class Options {
 					g.drawString("OPTIONS", (Game.frame.getWidth() / 2) - 115, 50);
 					g.setFont(new Font("Arial", Font.PLAIN, 30));
 					g.drawString("Fog:", check1.getX() - 90, check1.getY() + 37);
+					g.drawString("Fire:", check2.getX() - 90, check2.getY() + 37);
 					if (MouseInput.MOUSE.intersects(exit) && MouseInput.MOUSE != null) {
 						if(lastColor == false){
 							AudioPlayer.getSound(Audio.buttonHover).play();
@@ -91,6 +97,7 @@ public class Options {
 					g.drawString("Back", (int) exit.getX() + 65, (int) exit.getY() + 35);
 					g.drawRect((int)exit.getX(), (int)exit.getY(), (int)exit.getWidth(), (int)exit.getHeight());
 					check1.render(g);
+					check2.render(g);
 				}
 			}
 		}

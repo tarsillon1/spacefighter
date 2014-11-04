@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.nio.BufferOverflowException;
 
 import com.thinkbox.sf.Game;
 import com.thinkbox.sf.constants.Images;
@@ -26,7 +27,11 @@ public class Dust_Explosion extends Unit {
 	public void explode() {
 		z += 1;
 		if (z == 1) {
-			AudioPlayer.getSound(Audio.dustExplode).play();
+			try{
+				AudioPlayer.getSound(Audio.dustExplode).play();
+			}catch(IllegalArgumentException e){
+			}catch(BufferOverflowException e){
+			}
 			actor = Images.dust1;
 		} else if (z == 2) {
 			actor = Images.dust2;
